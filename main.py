@@ -1,15 +1,10 @@
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
-API_KEY = "3PRSWYI8VX57YHM2"
+API_KEY = "APIkeyGoesHere"
 import requests
 import datetime
 from datetime import timedelta
 
-# current_time = datetime.datetime.now()
-# yesterday_date = current_time - timedelta(days=1)
-# db_yesterday = yesterday_date - timedelta(days=1)
-# print(yesterday_date.date())
-# print(db_yesterday.date())
 
 parameters = {
         "function": "TIME_SERIES_DAILY",
@@ -28,16 +23,13 @@ db_yesterday = list(data["Time Series (Daily)"])[1]
 y_price = float(time_series[yesterday]['4. close'])
 dby_price = float(time_series[db_yesterday]['4. close'])
 price_difference = y_price - dby_price
-# stock_stat = ""
-# if price_difference >= 0:
-#     stock_stat = "increase"
-# else:
-#     stock_stat = "decrease"
+
 
 percentage = price_difference / y_price * 100
 
 if 5 >= percentage <= -5:
     print(f"get news {percentage}")
+    # using API we can send message or email notification (twillio recommended for message)
 
 news_parameters = {
         "apikey": "1121698c6e3648b2865718764631804a",
